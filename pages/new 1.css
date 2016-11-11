@@ -1,0 +1,54 @@
+element.style{
+	
+}
+
+
+
+.pull-right{
+	float: right !important;
+}
+
+li{
+	display: inline;
+}
+
+body {
+    font-family: 'BauhausHarishwk-Medium',Arial,Helvetica,sans-serif;
+    text-rendering: optimizeLegibility;
+    text-rendering: geometricPrecision;
+    font-smooth: always;
+    font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.2;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    background-color: #fff;
+}
+
+.icon {
+width:25px;
+height:25px;
+display:block;
+text-indent:-9999px;
+background-image:url(http://tridentdesign.com/wp-content/uploads/2012/12/gemicon.jpg);
+background-repeat:no-repeat;
+}
+
+.facebook {
+background-position:-140px -115px;
+}
+.twitter {
+background-position:-185px -115px;
+}
+.googleplus {
+background-position:-140px -265px;
+}

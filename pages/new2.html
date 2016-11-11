@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" name="viewport">
+	
+	<style>
+	div {
+	   list-style-type: circle;
+	   margin: 0;
+	   padding: 0;
+	   overflow: hidden;
+	   background-color: white;
+	}
+	
+	form {
+	   list-style-type: none;
+	   margin: 0px 100px;
+	   padding: 25px 25px;
+	   overflow: hidden;
+	   background-color: lightcyan;
+	   float: left;
+	   display: list-item;
+	   display: block;
+	   color: black;
+	   text-align: center;
+	  }
+		
+	li {
+		
+		margin: 0px 100px;
+		padding: 25px 25px;
+		text-decoration: none;
+		float: left;
+	}
+	
+	a:hover:not(.active) {
+		background-color: aquamarine;
+	}
+
+	.active {
+		background-color:#000;
+	}
+	tab1 {
+     	padding-left: 4em; 
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+		function showText(obj){
+			if(obj.value=='H'){ document.getElementById('area').style.display = 'block';}		
+			else if(obj.value=='L'){ document.getElementById('area1').style.display = 'block';}
+			else(obj.value=='LL'){ document.getElementById('area2').style.display = 'block';}
+		}
+    </script>
+</head>	
+	
+<body>
+
+  <form>
+  <fieldset>
+	<legend>Types of Trips</legend>
+	<li><INPUT TYPE=RADIO NAME="X" VALUE="H" onclick="showText(this);"/>Round Trip</li> 
+    <li><INPUT TYPE=RADIO NAME="X" VALUE="L" onclick="showText(this);"/>Oneway Trip</li>
+    <li><INPUT TYPE=RADIO NAME="X" VALUE="LL" onclick="showText(this);"/>Multi Stop</li>
+	<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="From">
+	<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="To">
+	<input id="area" style="display: none;" NAME="data" type="submit" value="Submit">
+   </fieldset>
+   </form>
+   
+   <form>
+		<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="From">
+		<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="To">
+		<input id="area" style="display: none;" NAME="data" type="submit" value="Submit">
+	</form>
+	
+	<form>
+		<input id="area1" style="display: none;" NAME="data" type="text" name="FirstName" value="From">
+		<input id="area1" style="display: none;" NAME="data" type="text" name="FirstName" value="To">
+		<input id="area1" style="display: none;" NAME="data" type="submit" value="Submit">
+	</form>
+  
+</body
+</html>

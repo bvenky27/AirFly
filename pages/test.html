@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0" name="viewport">
+	
+	<style>
+	form {
+	   list-style-type: none;
+	   margin: 0px 100px;
+	   padding: 25px 25px;
+	   overflow: hidden;
+	   background-color: lightcyan;
+	   float: left;
+	   display: list-item;
+	   display: block;
+	   color: black;
+	   text-align: center;
+	 }
+	.reveal-if-active {
+	  opacity: 0;
+	  max-height: 0;
+	  overflow: hidden;
+	  transform: scale(0.8);
+	  transition: 0.5s;
+	  input[id="choice-flights-travel"]:checked ~ &{
+		opacity: 1;
+		max-height: 100px;
+		overflow: visible;
+		padding: 10px 20px;
+		transform: scale(1);
+	  }
+	}
+	input[id="choice-flights-travel"]:checked ~ .reveal-if-active {
+	  opacity: 1;
+	  max-height: 100px; /* little bit of a magic number :( */
+	  overflow: visible;
+	}
+	
+	
+	</style>
+</head>
+<body>
+<form>
+	<input type="radio" name="choice-flights" id="choice-flights-travel"> <label for="choice-flights-travel">Round Trip</label>
+	<input type="radio" name="choice-flights" id="choice-flights-travel1"> <label for="choice-flights-travel">Round Trip</label>
+		
+		<form class="reveal-if-active">
+		  <input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="From">
+		<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="To">
+		<input id="area" style="display: none;" NAME="data" type="submit" value="Submit">
+		</form>
+</form>
+</body>
+</html>
