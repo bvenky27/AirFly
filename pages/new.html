@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<style>
+form {
+	   background-image:url(../img/bg8.jpg);
+	   background-repeat:no-repeat;
+	   background-size:cover;
+	   list-style-type: none;
+	   margin: 0px 0px;
+	   padding: 10px 10px;
+	   overflow: hidden;
+	   float: left;
+	   display: list-item;
+	   display: block;
+	   color: white;
+	   text-align: left;
+	   font-weight: 40;
+	   max-width: 80%;
+	   padding-bottom: 50px;
+	 }
+label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+tab1 { 
+	padding-left: 4em; 
+}
+tab2 { 
+	padding-left: 2em; 
+}
+ul.z  {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: gray;
+   opacity: 0.9;
+   padding-bottom: 10px;
+}
+	
+li.x {
+	margin: 0px 100px;
+	padding: 5px 5px;
+	text-decoration: none;
+	color: black;
+	display: block;
+	float: left;
+}
+li.x a {
+		display: block;
+		color: black;
+		text-align: center;
+		padding: 0px 0px;
+		text-decoration: none;
+	}
+.tooltipcontainer {
+    position: relative;
+	line-height: 20;
+	line-width: 2;
+	font-weight: bold;
+	color: black;
+}
+.tooltip {
+    display: none;
+    position: absolute;
+	font-size: 10px;
+    line-height: 1;
+	line-width: 1;
+}
+.tooltipcontainer1 {
+    position: relative;
+	line-height: 20;
+	line-width: 10;
+	color: black;
+}
+.tooltip1 {
+    display: none;
+	color: black;
+    position: absolute;
+	font-size: 8px;
+    line-height: 1;
+	line-width: 1;
+}
+a:hover .tooltip {
+    display: block;
+	z-index:10;
+}
+a:hover .tooltip1 {
+    display: block;
+	z-index:10;
+}
+input
+{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+    border:solid 1px black;
+    padding:5px;
+}
+.style
+{
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+    border:solid 1px black;
+    padding:5px;
+}
+
+</style>
+
+<script type="text/javascript">
+ window.onload = function() {
+    document.getElementById('ifYes').style.display = 'none';
+    document.getElementById('ifNo').style.display = 'none';
+}
+function yesnoCheck() {
+    if (document.getElementById('yesCheck').checked) {
+        document.getElementById('ifYes').style.display = 'block';
+        document.getElementById('ifNo').style.display = 'none';
+    } 
+    else if(document.getElementById('noCheck').checked) {
+        document.getElementById('ifNo').style.display = 'block';
+        document.getElementById('ifYes').style.display = 'none';
+        document.getElementById('redhat1').style.display = 'none';
+        document.getElementById('aix1').style.display = 'none';
+   }
+   
+function myFunction() {
+    document.getElementById("myNumber").stepUp();
+}
+}
+
+</script>
+</head>
+<body>
+<form >
+<input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="yesCheck"/><font size="10">Round Trip</font>
+<tab1><input type="radio" onclick="javascript:yesnoCheck();" name="yesno" id="noCheck"/><font size="10">Oneway Trip</tab1></font>
+<div id="ifYes" style="display:none">
+<ul class="z">
+<li class="x">Travelling From:<tab2><input type="text" name="win" value="From"/></li>
+<li class="x">Destination:<tab1><input type="text" name="win" value="To"/><tab1></li>
+<li class="x">Travel Date:<tab1><input type="date" placeholder="Next Week" value="Travel Date"><tab2></li>
+<li class="x">Return Date:<tab1><input type="date" placeholder="Next Week" value="Return Date"><tab1></li>
+
+<li class="x">
+  <label><a>Adult:
+        <div class="tooltipcontainer">
+            <div class="tooltip">Above 12 years</div>
+        </div>
+    </a></label>
+    <tab1>&emsp;&emsp;<input type="number" id="myNumber" value="1"><tab1>
+</li>
+<li class="x">
+    <label><a>Child:
+        <div class="tooltipcontainer">
+            <div class="tooltip">2 to 12 years</div>
+        </div>
+    </a></label>
+	<tab1>&emsp;<input type="number" id="myNumber" value="0">
+</li>
+<li class="x">
+    <label><a>Infants:
+        <div class="tooltipcontainer">
+            <div class="tooltip">7 months to 2 years</div>
+        </div>
+    </a></label>
+	<tab1>&emsp;<input type="number" id="myNumber" value="0">
+</li>
+<li class="x">
+	<label><a>Special Categeory:
+		<div class="tooltipcontainer">
+            <div class="tooltip">Applicable for discount</div>
+        </div>
+	</a></label>
+	<span>
+	<tab2><select class="style">
+		<option></option>
+		<option>Armed Forces Personnel</option>
+		<option>Unaccompanied Monir</option>
+		<option>Senior Citizen</option>
+		<option>student</option>
+	</select>
+	</span>
+</li>
+<li class="x"><button class="w3-btn w3-orange w3-xlarge">Search Flights<i class="w3-margin-left fa fa-search"></i></button></li>
+</ul>
+</div>
+
+<div id="ifNo" style="display:none">
+<ul class="z">
+<li class="x">Travelling From:<tab2><input type="text" name="win" value="From"/></li>
+<li class="x">Destination:<tab2>&emsp;&emsp;<input type="text" name="win" value="To"/><tab1></li>
+<li class="x">Travel Date:<tab1><input type="date" placeholder="Next Week" value="Travel Date"><tab2><tab1><tab1><tab1><tab1><tab1><tab1><tab1></li>
+
+<li class="x">
+  <label><a>Adult:
+        <div class="tooltipcontainer">
+            <div class="tooltip">Above 12 years</div>
+        </div>
+    </a></label>
+    <tab1>&emsp;&emsp;<input type="number" id="myNumber" value="1">&emsp;
+</li>
+<li class="x">
+    <label><a>Child:
+        <div class="tooltipcontainer">
+            <div class="tooltip">2 to 12 years</div>
+        </div>
+    </a></label>
+	<tab1>&emsp;&emsp;&emsp;&emsp;<input type="number" id="myNumber" value="0">
+</li>
+<li class="x">
+    <label><a>Infants:
+        <div class="tooltipcontainer">
+            <div class="tooltip">7 months to 2 years</div>
+        </div>
+    </a></label>
+	<tab1>&emsp;<input type="number" id="myNumber" value="0">&emsp;
+</li>
+<li class="x">
+	<label><a>Special Categeory:
+		<div class="tooltipcontainer">
+            <div class="tooltip">Applicable for discount</div>
+        </div>
+	</a></label>
+	<span>
+	<tab2><select class="style">
+		<option></option>
+		<option>Armed Forces Personnel</option>
+		<option>Unaccompanied Monir</option>
+		<option>Senior Citizen</option>
+		<option>student</option>
+	</select>
+	</span>
+</li>
+<li class="x"><button class="w3-btn w3-orange w3-xlarge">Search Flights<i class="w3-margin-left fa fa-search"></i></button></li>
+
+</ul> 
+</div>
+</form>
+</body> 
+</html>

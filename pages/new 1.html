@@ -30,7 +30,7 @@
 		text-decoration: none;
 	}
 
-	ul {
+	ul.d {
 	   list-style-type: none;
 	   margin: 0;
 	   padding: 0;
@@ -38,27 +38,32 @@
 	   background-color: #333;
 	}
 	
-	li {
+	li.b {
 		float: right;
 		display: list-item;
 	}
 	
-	li a {
+	li.b a {
 		display: block;
 		color: white;
 		text-align: center;
 		padding: 25px 25px;
 		text-decoration: none;
 	}
-	
-	a:hover:not(.active) {
-		background-color: #111;
+	li.c {
+		float: right;
+		display: list-item;
 	}
+	
+	li.c a {
+		display: block;
+		color: white;
+		text-align: center;
+		padding: 25px 125px;
+		text-decoration: none;
+	}
+	
 
-	.active {
-		background-color:#345;
-	}
-	
 	.msg {
 	   font-family: "Comic Sans MS", cursive, sans-serif;
 	   list-style-type: none;
@@ -101,67 +106,36 @@
 		text-decoration: none;
 		
 	}
-	form {
-	   list-style-type: none;
-	   margin: 0px 100px;
-	   padding: 25px 300px;
-	   overflow: hidden;
-	   background-color: lightcyan;
-	   opacity: 0.8;
-       filter: alpha(opacity=80);
-	   float: left;
-	   display: list-item;
-	   display: block;
-	   color: black;
-	   text-align: center;
-	  }
-		
-	li types {
-		
-		margin: 0px 100px;
-		padding: 125px 125px;
-		text-decoration: none;
-		float: left;
-	}
-	</style>
-
+	
+</style>
 </head>
 <body> 
 
   <div>
 	<a href="../pages/new 1.html" style="float : left"><font size="5"><strong><i>AIRFLY</i></strong></font></a>
   
-	<ul>
-		<li><a href="http://www.imdb.com/title/tt0118884/">Contact</a></li>
-		<li><a href="http://www.twitter.com"><img alt="find us on facebook" src="../img/gp.png" border=0></a></li>
-		<li><a href="http://www.googleplus.com"><img alt="find us on facebook" src="../img/tw.png" border=0></a></li>
-		<li><a href="http://www.facebook.com"><img alt="find us on facebook" src="../img/fb.png" border=0></a></li>
-		<li class="current active"><a href="new 1.html"><img alt="find us on facebook" src="../img/home.png" border=0></a></li>
+	<ul class="d">
+		<li class="b"><a href="http://www.imdb.com/title/tt0118884/">Contact</a></li>
+		<li class="b"><a href="http://www.googleplus.com"><img alt="find us on facebook" src="../img/gp.png" border=0></a></li>
+		<li class="b"><a href="http://www.twitter.com"><img alt="find us on facebook" src="../img/tw.png" border=0></a></li>
+		<li class="b"><a href="http://www.facebook.com"><img alt="find us on facebook" src="../img/fb.png" border=0></a></li>
+		<li class="b" class="current active"><a href="new 1.html"><img alt="find us on facebook" src="../img/home.png" border=0></a></li>
 	</ul>
   </div>
   
   <div class="msg">
-    <p> <font size="400" color="black"><strong>BIENVENIDO!!</strong></font></p>
+    <p> <font size="400" color="black"><strong>&emsp;WELCOME!!</strong></font></p>
 	<p> <font size="50" color="white">GET...SET...FLY...</font></p>
   </div>
   
   <div class="nav">
-	<ul>
-		<li><a href=""><strong>Update Contact Details</strong></a></li>
-		<li><a href=""><strong>View / Change Booking</strong></a></li>
-		<li class="current active"><a href=""><strong>Book Flight</strong></a></li>
+	<ul  class="d">
+		<li  class="c"><a href="http://www.imdb.com/title/tt0118884/"><strong>Update Contact Details</strong></a></li>
+		<li  class="c"><a href="http://abc.go.com/shows/the-view"><strong>View / Change Booking</strong></a></li>
+		<li  class="c" class="current active"><a href="new 1.html"><strong>Book Flight</strong></a></li>
 	</ul>
-  </div>
-  <form>
-  <fieldset>
-	<legend>Types of Trips</legend>
-	<li class="types"><INPUT TYPE=RADIO NAME="X" VALUE="H" onclick="showText(this);"/>Round Trip</li>
-    <li class="types"><INPUT TYPE=RADIO NAME="X" VALUE="L" onclick="showText(this);"/>Oneway Trip</li>
-    <li class="types"><INPUT TYPE=RADIO NAME="X" VALUE="LL" onclick="showText(this);"/>Multi Stop</li>
-	<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="From">
-	<input id="area" style="display: none;" NAME="data" type="text" name="FirstName" value="To">
-	<input id="area" style="display: none;" NAME="data" type="submit" value="Submit">
-   </fieldset>
-   </form>
+	</div>
   
- </html>
+
+</body> 
+</html>
