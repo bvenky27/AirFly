@@ -1,0 +1,100 @@
+<html>
+
+<head>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="front_css.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--
+  <script src="jquery-1.11.1.js"></script>
+  <script src="jquery-ui-1.11.1.custom/jquery-ui.js"></script>
+  -->
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script>
+        $(function() {
+            $("#datepicker1").datepicker();
+            $("#datepicker1").datepicker("option", "showAnim", "slideDown");
+            $("#datepicker2").datepicker();
+            $("#datepicker2").datepicker("option", "showAnim", "slideDown");
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#origin").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
+    <style type="text/css">
+        .ui-state-hover {
+            background: #428BCA!important;
+        }
+        .ui-datepicker-header {
+            background: #9dc0f9;
+            color: #ffff;
+            border-color: #111;
+        }
+        .ui-menu .ui-menu-item a {
+            background: white;
+            height: 30px;
+            font-size: 15px;
+            margin-top: 2px;
+        }
+        .ui-autocomplete {
+            background: white;
+            border-radius: 0px;
+        }
+        .ui-autocomplete .ui-menu-item a.ui-state-focus {
+            background: #d4d7db !important;
+            border: 0px solid #32BE61 !important;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <div class="radio_group">
+            <label class="radio-inline" id="radio1">
+                <input type="radio" name="optradio">One way</label>
+            <label class="radio-inline" id="radio2">
+                <input type="radio" name="optradio">Round Trip</label>
+        </div>
+        <div class='text_boxs'>
+            <input type="text" class="textfield" name="fname" id="origin" placeholder="Select Origin"></input>
+            <input type="text" class="textfield" name="fname" placeholder="Select Destination"></input>
+            <input type="text" class="textfield" name="fname" id="datepicker1" placeholder="Depart Date"></input>
+            <img src="date.png" width=25 id="calender_image1" />
+            <input type="text" class="textfield" name="fname" id="datepicker2" placeholder="Return Date"></input>
+            <img src="date.png" width=25 id="calender_image2" />
+        </div>
+    </div>
+</body>
+
+</html>

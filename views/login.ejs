@@ -1,0 +1,192 @@
+<html>
+
+<head>
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script src="https://cdn.auth0.com/js/lock/10.6/lock.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style_sheet.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!--
+  <script src="jquery-1.11.1.js"></script>
+  <script src="jquery-ui-1.11.1.custom/jquery-ui.js"></script>
+  -->
+	<script src="//cdn.auth0.com/js/lock/10.3.0/lock.min.js"></script>
+	<script src="auth0-variables.js"></script>
+	<link href="stylesheets/login_stylesheet.css" rel="stylesheet">
+	<link href="stylesheets/navigation_stylesheet.css" rel="stylesheet">
+	<script src="../js/app.js" type="text/javascript"></script>
+    <script>
+		function httpGetAsync(theUrl, callback){
+             var xmlHttp = new XMLHttpRequest();
+             xmlHttp.onreadystatechange = function(){
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                 callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("GET", theUrl, true); // true for asynchronous
+            xmlHttp.send(null);
+        }
+        $(function() {
+			 $('#login-form-link').click(function(e) {
+		$("#login-form").delay(100).fadeIn(100);
+ 		$("#register-form").fadeOut(100);
+		$('#register-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+	$('#register-form-link').click(function(e) {
+		$("#register-form").delay(100).fadeIn(100);
+ 		$("#login-form").fadeOut(100);
+		$('#login-form-link').removeClass('active');
+		$(this).addClass('active');
+		e.preventDefault();
+	});
+        });
+    </script>
+	<script>
+		var AUTH0_CLIENT_ID='ZxZyMDhutm2Th9wOuGB2OdSEldZ4qJb6';
+		var AUTH0_DOMAIN='bvenky27.auth0.com';
+		var AUTH0_CALLBACK_URL=location.href;
+
+		window.addEventListener('load', function() {
+
+			var lock = new Auth0Lock(AUTH0_CLIENT_ID, AUTH0_DOMAIN, {
+				auth: {
+					redirectUrl: 'http://localhost:3000/airlinereservation/search',
+					responseType: 'code',
+					params: {
+						scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+					}
+				}
+			});
+
+			// buttons
+			var btn_login = document.getElementById('btn-login');
+			var btn_logout = document.getElementById('btn-logout');
+
+			btn_login.addEventListener('click', function() {
+				lock.show();
+			});
+
+			btn_logout.addEventListener('click', function() {
+				logout();
+			});
+
+			lock.on("authenticated", function(authResult) {
+				lock.getProfile(authResult.idToken, function(error, profile) {
+					if (error) {
+						// Handle error
+						return;
+					}
+					localStorage.setItem('id_token', authResult.idToken);
+					// Display user information
+					show_profile_info(profile);
+				});
+			});
+
+			//retrieve the profile:
+			var retrieve_profile = function() {
+				var id_token = localStorage.getItem('id_token');
+				if (id_token) {
+					lock.getProfile(id_token, function (err, profile) {
+						if (err) {
+							return alert('There was an error getting the profile: ' + err.message);
+						}
+						// Display user information
+						show_profile_info(profile);
+					});
+				}
+			};
+
+			var show_profile_info = function(profile) {
+				var avatar = document.getElementById('avatar');
+				document.getElementById('nickname').textContent = profile.nickname;
+				btn_login.style.display = "none";
+				avatar.src = profile.picture;
+				avatar.style.display = "block";
+				btn_logout.style.display = "block";
+			};
+
+			var logout = function() {
+				localStorage.removeItem('id_token');
+				window.location.href = "/";
+			};
+
+			retrieve_profile();
+		});
+
+	</script>
+	<style>
+		.msg p {
+			font-family: "Comic Sans MS", cursive, sans-serif;
+			display: block;
+			color: black;
+			text-align: left;
+			padding: 0px 50px;
+			text-decoration: none;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="container-fluid"  id= "container-fuild-id">
+    <!-- Second navbar for profile settings -->
+    <nav class="navbar navbar-inverse" id="nav_id">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+			<a class="navbar-brand" href="#"><strong><font color="white"> Airfly</font></strong></a>
+		</div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+</div><!-- /.container-fluid -->
+	<div class="container">
+		<div class="msg">
+			<p> <font size="350" color="black"><strong>  WELCOME!!</strong></font></p>
+			<p> <font size="50" color="#ffdead">GET...SET...FLY...</font></p>
+		</div>
+    	<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<div >
+					<div >
+
+
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-lg-12">
+
+
+									<div class="form-group">
+										<div class="row">
+											<div class="col-sm-6 col-sm-offset-3">
+
+												<button type="submit" id="btn-login" class="form-control btn btn-login">SignUp / LogIn</button>
+
+											</div>
+										</div>
+									</div>
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

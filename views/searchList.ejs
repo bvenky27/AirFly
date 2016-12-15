@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.modal-body {
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}
+input.passenger_details{
+  padding: .6em 1em;
+  font-size: 1em;
+  border: .5px rgba(0,0,0,.1) solid;
+  font-weight: lighter;
+  width: 90%;
+  box-shadow: 0px 0px 15px rgba(0,0,0,.1) inset;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  height: auto !important;
+}
+</style>
+</head>
+<body>
+
+<!--
+<div class='row'>
+<% for(var key in result_data){ %>
+    <div class='row'>
+    <div class='col-sm-6'><%= key %></div>
+    <% if((key == 'departDate') || (key == 'returnDate') || (key == 'tripType')){ %>
+    <div class='col-sm-2'><%= result_data[key] %></div>
+    <% }else { %>
+      <div class='col-sm-1'><%= result_data[key] %></div>
+    <%} %>
+    </div>
+    <%  } %>
+</div>
+-->
+<!--
+<div class='row'>
+<% for(var key in result_data){ %>
+    <div class='col-sm-1'><%= result_data[key] %></div>
+    <%  } %>
+    <div class='col-sm-1'>
+      <button type="button" id = "myBtn" class=".btn-group-sm">Book</button>
+    </div>
+</div>
+-->
+<% if(trip_type == 'oneway'){%>
+  <div class='row sc-results-header'>
+    <div class="col-xs-1 sc-results-header-item">Airline</div>
+    <div class="col-xs-1 sc-results-header-item">Flight #</div>
+    <div class="col-xs-3 sc-results-header-item">Source</div>
+    <div class="col-xs-3 sc-results-header-item">Destination</div>
+    <div class="col-xs-1 sc-results-header-item">Duration</div>
+    <div class="col-xs-1 sc-results-header-item">Stops</div>
+    <div class="col-xs-1 sc-results-header-item">Fare</div>
+    <div class="col-xs-1 sc-results-header-item">&nbsp;</div>
+  </div>
+
+<% for(var i = 0 ;i < result_data.length; i++){%>
+
+<div class='row sc-results-entry'>
+
+    <div class='col-sm-1 sc-results-item'><%= result_data[i]['airline'] %></div>
+    <div class='col-sm-1 sc-results-item flight-id'><%= result_data[i]['flight_id'] %></div>
+
+    <div class= 'col-sm-6'>
+      <div class = 'row'>
+        <div class = 'col-sm-5 sc-results-item city'><%= result_data[i]['sourceIATA'] %></div>
+        <div class = 'col-sm-2 sc-results-item'><i class="glyphicon glyphicon-arrow-right"></i></div>
+        <div class = 'col-sm-5 sc-results-item city'><%= result_data[i]['destinationIATA'] %></div>
+      </div>
+      <div class = 'row'>
+        <div class = 'col-sm-5 sc-results-item timings'><%= result_data[i]['departDate']%>, <%= result_data[i]['departure_time']%></div>
+        <div class = 'col-sm-2 sc-results-item'>&nbsp;</div>
+        <div class = 'col-sm-5 sc-results-item timings'><%= result_data[i]['arrivalDate']%>, <%= result_data[i]['arrival_time']%></div>
+      </div>
+      <!--<div class = 'row'>
+        <div class = 'col-sm-6'><%= result_data['departure_time']%></div>
+        <div class = 'col-sm-6'><%= result_data['arrival_time']%></div>
+      </div>-->
+      </div>
+      <div class='col-sm-1 sc-results-item'><%= result_data[i]['duration'] %></div>
+      <div class='col-sm-1 sc-results-item'><%= result_data[i]['stops'] %></div>
+      <div class='col-sm-1 sc-results-item fare'><%= result_data[i]['fare'] %></div>
+
+    <div class='col-sm-1'>
+      <button type="button" id = <%= result_data[i]['route_id'] %> class=".btn-group-sm sc-results-item sf-submit book_button" >Book</button>
+    </div>
+</div>
+
+<%} } else if(trip_type == 'round'){%>
+
+  <!-- Book Button -->
+  <div class="row one-book-button">
+    <div class="col-sm-10">&nbsp;</div>
+    <div class="col-sm-2" style="text-align: right">
+      <button type="button" id = "myBtn" class=".btn-group-sm sc-results-item sf-submit book_button_round">Book</button>
+    </div>
+  </div>
+
+  <!-- Header -->
+<div class="row">
+  <div class="col-sm-12">
+    <font size="20px"><strong>To Journey</strong></font>
+  </div>
+</div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class='row sc-results-header'>
+        <div class="col-xs-2 sc-results-header-item">Flight #</div>
+        <div class="col-xs-3 sc-results-header-item">Source</div>
+        <div class="col-xs-3 sc-results-header-item">Destination</div>
+        <div class="col-xs-2 sc-results-header-item">Duration</div>
+        <div class="col-xs-1 sc-results-header-item">Fare</div>
+        <div class="col-xs-1 sc-results-header-item">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-sm-12">
+      <% for(var j = 0 ;j < result_data[0].length; j++){%>
+      <div class='row sc-results-entry'>
+        <div class='col-sm-2'><%= result_data[0][j]['airline'] %><div class="flight-id"><%= result_data[0][j]['flight_id'] %></div></div>
+
+        <div class= 'col-sm-6'>
+          <div class = 'row'>
+            <div class = 'col-sm-5 sc-results-item city'><%= result_data[0][j]['sourceIATA'] %></div>
+            <div class = 'col-sm-2 sc-results-item'><i class="glyphicon glyphicon-arrow-right"></i></div>
+            <div class = 'col-sm-5 sc-results-item city'><%= result_data[0][j]['destinationIATA'] %></div>
+          </div>
+          <div class = 'row'>
+            <div class = 'col-sm-5 sc-results-item timings'><%= result_data[0][j]['departDate']%>, <%= result_data[0][j]['departure_time']%></div>
+            <div class = 'col-sm-2 sc-results-item'>&nbsp;</div>
+            <div class = 'col-sm-5 sc-results-item timings'><%= result_data[0][j]['arrivalDate']%>, <%= result_data[0][j]['arrival_time']%></div>
+          </div>
+          </div>
+          <div class='col-sm-2 sc-results-item '><%= result_data[0][j]['duration'] %><br><%= result_data[0][j]['stops'] %></div>
+          <div class='col-sm-1 sc-results-item fare'><%= result_data[0][j]['fare'] %></div>
+          <div class='col-sm-1'>
+            <label class="control control--radio">
+              <input type="radio" name="upTrip" value="<%= result_data[0][j]['route_id'] %>">
+              <div class="control__indicator"></div>
+            </label>
+          </div>
+        </div>
+            <% }%>
+    </div>
+   </div>
+<div class="row">
+  <div class="col-sm-12">
+  <font size="20px"><strong>Return Journey</strong></font>
+</div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class='row sc-results-header'>
+      <div class="col-xs-2 sc-results-header-item">Flight #</div>
+      <div class="col-xs-3 sc-results-header-item">Source</div>
+      <div class="col-xs-3 sc-results-header-item">Destination</div>
+      <div class="col-xs-2 sc-results-header-item">Duration</div>
+      <div class="col-xs-1 sc-results-header-item">Fare</div>
+      <div class="col-xs-1 sc-results-header-item">&nbsp;</div>
+    </div>
+  </div>
+</div>
+   <div class='row'>
+
+    <div class="col-sm-12">
+      <% for(var j = 0 ;j < result_data[1].length; j++){%>
+      <div class='row sc-results-entry'>
+        <div class='col-sm-2'><%= result_data[1][j]['airline'] %><div class="flight-id"><%= result_data[1][j]['flight_id'] %></div></div>
+
+        <div class= 'col-sm-6'>
+          <div class = 'row'>
+            <div class = 'col-sm-5 sc-results-item city'><%= result_data[1][j]['destinationIATA'] %></div>
+            <div class = 'col-sm-2 sc-results-item'><i class="glyphicon glyphicon-arrow-right"></i></div>
+            <div class = 'col-sm-5 sc-results-item city'><%= result_data[1][j]['sourceIATA'] %></div>
+          </div>
+          <div class = 'row'>
+            <div class = 'col-sm-5 sc-results-item timings'><%= result_data[1][j]['departDate']%>, <%= result_data[1][j]['departure_time']%></div>
+            <div class = 'col-sm-2 sc-results-item'>&nbsp;</div>
+            <div class = 'col-sm-5 sc-results-item timings'><%= result_data[1][j]['arrivalDate']%>, <%= result_data[1][j]['arrival_time']%></div>
+          </div>
+          </div>
+          <div class='col-sm-2 sc-results-item '><%= result_data[1][j]['duration'] %><br><%= result_data[1][j]['stops'] %></div>
+          <div class='col-sm-1 sc-results-item fare'><%= result_data[1][j]['fare'] %></div>
+          <div class='col-sm-1'>
+            <label class="control control--radio">
+              <input type="radio" name="downTrip" value= "<%= result_data[1][j]['route_id'] %>">
+              <div class="control__indicator"></div>
+            </label>
+          </div>
+        </div>
+      <% }%>
+    </div>
+  </div>
+  <% } %>
+<div class="modal fade" id="myModal" role="dialog">
+   <div class="modal-dialog">
+
+     <!-- Modal content-->
+     <div class="modal-content">
+       <div class="modal-header" style="background:#432C3F">
+         <button type="button" class="close" data-dismiss="modal" style="color:#fff">&times;</button>
+         <h2 class="modal-title" style="color:#fff">Passenger/Passeneger's Information</h2>
+       </div>
+
+       <div class="modal-body">
+         <h4 class="md-heading">Passengers 1 Information</h4>
+         <div id= "passenger-1" class="row">
+           <div class = "row">
+             <input type="text" id= "passenger-1-name" class="passenger_details" placeholder="Enter full name" data-passenger-count = "<%=passenger_count%>" data-class-id = "<%=clazz %>">
+
+           </div>
+
+           <div class="row">
+             <input type="text" id = "passenger-1-email" placeholder="enter email" class="passenger_details">
+           </div>
+           <div class="row">
+             <input type="text" id = "passenger-1-phone" placeholder="enter phone number" class="passenger_details">
+           </div>
+
+          </div>
+          <%if(passenger_count > 1) {%>
+
+          <%}%>
+         <%for(var i =2; i <= passenger_count; i++){ %>
+         <h4 class="md-heading">Passenger <%=i %> Information</h4>
+         <div id = "passenger-<%=i %>-div" class="row">
+         <input type="text" id = "passenger-<%=i %>-name" placeholder="Enter full name" class="passenger_details">
+          </div>
+         <div id = "passenger-<%=i %>-div" class="row">
+           <input type="text" id = "passenger-<%=i %>-email" placeholder="Enter email" class="passenger_details">
+         </div>
+         <div id = "passenger-<%=i %>-div" class="row">
+           <input type="text" id = "passenger-<%=i %>-phone" placeholder="Enter phone number" class="passenger_details">
+         </div>
+         <%}%>
+
+       <div class="modal-footer">
+          <button type="button" id="modal_submit" class="btn btn-default">Submit</button>
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+
+   </div>
+ </div>
+</div>
+
+<div class="modal fade" id="booking_myModal" role="dialog">
+   <div class="modal-dialog">
+
+     <!-- Modal content-->
+     <div class="modal-content">
+       <div class="modal-body">
+          <h4 id="booking_id">   </h4>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+
+   </div>
+ </div>
+</div>
+  <script>
+  $(document).ready(function(){
+      var button_id;
+      var class_id = <%=clazz %>
+      var trip_type = '<%=trip_type%>'
+      var passenger_count = <%=passenger_count%>
+      $(".book_button").click(function(){
+          button_id = $(this).attr("id");
+          console.log("Assuming the id is "+button_id);
+          $("#myModal").modal();
+      });
+      $(".book_button_round").click(function(){
+          $("#myModal").modal();
+      });
+
+      $("#modal_submit").click(function(){
+          var passengers=[]
+          //var passenger_count = $('#passegner-1-name').attr('data-passenger-count');
+          //var class_id = $('#passegner-1-name').attr('data-class-id');
+          for(var j=0; j<passenger_count; j++){
+            passengers[j] = {};
+            passengers[j]['name'] = $('#passenger-'+(j+1)+"-name").val();
+            if(j == 0){
+              passengers[j]["email"] = $("#passenger-1-email").val();
+              passengers[j]["phone_num"] = $('#passenger-1-phone').val();
+              passengers[j]["is_primary"] = "1";
+            }else{
+              passengers[j]["email"] = "";
+              passengers[j]["phone_num"] ="";
+              passengers[j]["is_primary"] ="";
+            }
+          }
+          
+          if(trip_type == 'round'){
+
+             var schedule_id1 = $('input[name=upTrip]:checked').val();
+          var schedule_id2 = $('input[name=downTrip]:checked').val();
+             var final_data1 = {"passengers":passengers,"class_id":class_id,"schedules":[schedule_id1]}
+             var final_data2 = {"passengers":passengers,"class_id":class_id,"schedules":[schedule_id2]}
+             var booking_id1 ;
+             var booking_id2 ;
+             httpPostAsync("/airlineReservation/tickets", final_data1, function(text){
+                var res = JSON.parse(text);
+                var status = res["status"];
+                booking_id1 = res['booking_id'];
+               booking_id1 = booking_id1.split("-")[0]
+                httpPostAsync("/airlineReservation/tickets",final_data2,function(text){
+                  var res = JSON.parse(text);
+                  var status = res['status'];
+                  booking_id2 = res["booking_id"];
+                  booking_id2 = booking_id2.split("-")[0]
+                  $("#myModal .close").click();
+                // $('#booking_id').text("The booking_id is " + booking_id);
+                document.getElementById("booking_id").innerHTML = "<b>Booking Successful</b><br><br> <b>Your Itinerary number for up Trip </b><i>" + booking_id1+"</i>"+"<br><b>Your Itinerary number for down Trip </b><i>"+booking_id2+'</i>';
+                  $("#booking_myModal").modal();
+                });
+             });
+             return;
+          }
+          var final_data = {"passengers":passengers,"class_id":class_id,"schedules":[button_id]}
+          console.log(final_data);
+          httpPostAsync("/airlineReservation/tickets",final_data,function(text){
+              var res = JSON.parse(text);
+              var status = res["status"];
+              if(status == "success"){
+                 var booking_id = res['booking_id'];
+                booking_id = booking_id.split("-")[0]
+                 $("#myModal .close").click();
+                // $('#booking_id').text("The booking_id is " + booking_id);
+                document.getElementById("booking_id").innerHTML = "<b>Booking Successful</b><br><br> <b>Your Itinerary number is </b><i>" + booking_id+"</i>"
+                  $("#booking_myModal").modal();
+              }else{
+
+              }
+          })
+      });
+  });
+  function httpPostAsync(theUrl, data, callback){
+             var xmlHttp = new XMLHttpRequest();
+             xmlHttp.onreadystatechange = function(){ 
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                 callback(xmlHttp.responseText);
+            }
+            xmlHttp.open("POST", theUrl, true); // true for asynchronous 
+            xmlHttp.setRequestHeader("Content-type", "application/json");
+            xmlHttp.send(JSON.stringify(data));
+      }
+  </script>
+  </body>
+</html>
